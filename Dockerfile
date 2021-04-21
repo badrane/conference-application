@@ -1,3 +1,5 @@
-FROM fabric8/tomcat-9
-
-COPY *.war /opt/tomcat/webapps/
+FROM java:8
+VOLUME /tmp
+ADD conference-app.war app.war
+RUN bash -c 'touch /app.war'
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.war"]
